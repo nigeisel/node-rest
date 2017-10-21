@@ -1,0 +1,12 @@
+version: "3.3"
+services:
+  rest-api:
+    image: nilsg/raspi-node-rest
+    entrypoint:
+        - ./entrypoint.sh
+    build: .
+    ports:
+        - 8080:8080
+        - 8443:8443
+    stdin_open: true
+    tty: true
