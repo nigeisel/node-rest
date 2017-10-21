@@ -1,5 +1,5 @@
-var express    = require('express');
-var app        = express();
+var express = require('express');
+var app = express();
 var fs = require('fs');
 var bodyParser = require('body-parser');
 var https = require('https');
@@ -22,11 +22,11 @@ var portHttp = 8080;
 var router = express.Router();
 
 router.get('/', function(req, res) {
-    console.log("request received");
-    res.json({ message: 'hooray! welcome to our api!' });
+    console.log("Request received:" + req);
+    res.json({ message: 'Hello World!' });
 });
 
-app.use('/api', router);
+app.use('/api/helloworld', router);
 
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
