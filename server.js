@@ -30,7 +30,9 @@ router.get('/helloworld', function(req, res) {
 
 router.get('/lights', function(req, res) {
     if (auth.verifyAuth(req.headers)) {
-        a = execFile('./hardware_ctrl/switch', ['light', 'on'], (error, stdout, stderr) => {
+        what = req.param("what");
+        state = req.param("state");
+        execFile('./hardware_ctrl/switch', [what, state], (error, stdout, stderr) => {
             console.log(stdout);
             if (error) {
                 console.log(error);
