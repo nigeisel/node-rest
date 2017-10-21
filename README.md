@@ -7,3 +7,5 @@ HTTPS secured RESTful API created with node and Express, ready to be run in an A
 * `build_run_amd.sh` will build ready docker container and run it for AMD64 Architecture
   * exposes port 8080 (for http) and 8443 for (https secured) api
   * starts both services
+* Cert for SSL not included:
+  * run `openssl req -x509 -newkey rsa:2048 -keyout private.pem -out cert.pem -days 365` to create
