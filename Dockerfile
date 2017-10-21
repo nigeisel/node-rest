@@ -6,9 +6,10 @@ FROM $BASE_IMG
 #FROM node:alpine
 
 RUN mkdir -p node-server
-COPY . /node-server
+COPY package.json /noder-server
 WORKDIR node-server
 RUN npm install
+COPY . /node-server
 
 EXPOSE 8443
 EXPOSE 8080

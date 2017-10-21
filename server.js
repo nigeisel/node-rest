@@ -30,8 +30,10 @@ router.get('/helloworld', function(req, res) {
 
 router.get('/lights', function(req, res) {
     if (auth.verifyAuth(req.headers)) {
-        execFile('./hardware_ctrl/switch', ['light', 'on'], (error, stdout, stderr) => {
+        a = execFile('./hardware_ctrl/switch', ['light', 'on'], (error, stdout, stderr) => {
+            console.log(stdout);
             if (error) {
+                console.log(error);
                 res.status(500).json({ message: 'hardware control failed' });
             }
         });
@@ -40,6 +42,7 @@ router.get('/lights', function(req, res) {
         res.status(401).json({ message: 'NO!' });
     }
 });
+
 
 app.use('/api', router);
 

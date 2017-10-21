@@ -2,6 +2,10 @@
 encryption/*
 !encryption/.gitkeep
 
+### Ignore hardware interface but keep folder:
+hardware_ctrl/*
+!hardware_ctrl/.gitkeep
+
 # Logs
 logs
 *.log
