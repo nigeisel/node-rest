@@ -1,6 +1,6 @@
 ### Ignore certificate stuff but keep folder:
-somefolder/*
-!somefolder/.gitkeep
+encryption/*
+!encryption/.gitkeep
 
 # Logs
 logs
