@@ -6,6 +6,7 @@ var https = require('https');
 var http = require('http');
 var auth = require('./authentification');
 var execFile = require('child_process').execFile;
+var cors = require('cors');
 
 var key = fs.readFileSync('encryption/private.key');
 var cert = fs.readFileSync('encryption/server.crt');
@@ -17,6 +18,7 @@ var credentials = {
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors());
 
 var portHttps = 8443;
 var portHttp = 8080;
