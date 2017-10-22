@@ -37,7 +37,7 @@ router.get('/lights', function(req, res) {
         var what = req.param("what");
         var state = req.param("state");
 
-        if (what === undefined || state == undefined) {
+        if (what != undefined && state != undefined) {
             console.log("Params: " + "what="+what + " & " + "state="+state);
 
             var hardware_path = "./hardware_ctrl/switch";
