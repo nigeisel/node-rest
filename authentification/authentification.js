@@ -4,7 +4,7 @@ var users = {
 }
 
 verifyAuth = function(req, res, next) {
-
+    
     var uid = req.headers["user"];
     var pw = req.headers["password"];
 
