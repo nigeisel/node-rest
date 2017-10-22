@@ -4,7 +4,7 @@ var users = {
 }
 
 exports.verifyAuth = function(headers) {
-    
+
     var uid = headers["user"];
     var pw = headers["password"];
 

@@ -1,33 +1,9 @@
 var express = require('express');
-var app = express();
-var fs = require('fs');
-var bodyParser = require('body-parser');
-var https = require('https');
-var http = require('http');
-var auth = require('./authentification');
-var execFile = require('child_process').execFile;
-var cors = require('cors');
-
-var key = fs.readFileSync('encryption/private.key');
-var cert = fs.readFileSync('encryption/server.crt');
-
-var credentials = {
-  key: key,
-  cert: cert
-};
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(cors());
-
-var portHttps = 8443;
-var portHttp = 8080;
-
 var router = express.Router();
 
-router.get('/alive', function(req, res) {
-    console.log("Alive...");
-    res.status(200).json({ message: 'Im Alive!' });
+/* GET home page. */
+router.get('/', function(req, res, next) {
+    res.render('index', { title: 'RaspberryNi Control Interface' });
 });
 
 router.get('/lights', function(req, res) {
@@ -53,8 +29,8 @@ router.get('/lights', function(req, res) {
                         res.status(500).json({ message: 'hardware control failed' });
                     } else {
                         console.log("Executed hardware interface" + hardware_path);
-                    }
-                })
+            }
+            })
                 console.log("Responding 200");
                 res.status(200).json({ message: 'Lights' });
             }
@@ -72,13 +48,10 @@ router.get('/lights', function(req, res) {
     }
 });
 
+router.get('/alive', function(req, res) {
+    console.log("Alive...");
+    res.status(200).json({ message: 'Im Alive!' });
+});
 
-app.use('/api', router);
 
-var httpServer = http.createServer(app);
-var httpsServer = https.createServer(credentials, app);
-httpsServer.listen(portHttps);
-httpServer.listen(portHttp);
-
-console.log('Starting HTTPS on port ' + portHttps);
-console.log('Starting HTTP on port ' + portHttp);
+module.exports = router;
