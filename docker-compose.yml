@@ -3,7 +3,7 @@ services:
   rest-api:
     image: nilsg/raspi-node-rest
     entrypoint:
-        - ./entrypoint.sh
+        - ./entrypoint_bash.sh
     build: .
     ports:
         - 8080:8080

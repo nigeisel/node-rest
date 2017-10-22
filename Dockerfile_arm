@@ -1,9 +1,4 @@
-ARG BASE_IMG
-FROM $BASE_IMG
-
-#FROM resin/raspberry-pi-alpine-node
-#ENV INITSYSTEM on
-#FROM node:alpine
+FROM raspberry-pi-node:8.0.0
 
 RUN mkdir -p node-server
 COPY package.json /node-server
@@ -16,4 +11,4 @@ COPY . /node-server
 EXPOSE 8443
 EXPOSE 8080
 
-CMD ./entrypoint_bash.sh
+CMD ./entrypoint.sh

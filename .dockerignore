@@ -2,5 +2,10 @@ node_modules/
 .git/
 .gitignore
 
-Dockerfile
-build_run.sh
+Dockerfile_arm
+build_run_amd.sh
+build_run_arm.sh
+docker-compose.yml
+
+LICENSE
+README.md
