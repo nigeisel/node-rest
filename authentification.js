@@ -4,6 +4,7 @@ var users = {
 }
 
 exports.verifyAuth = function(headers) {
+    
     var uid = headers["user"];
     var pw = headers["password"];
 
@@ -12,7 +13,7 @@ exports.verifyAuth = function(headers) {
         return false;
     }
     if (users[uid] != pw) {
-        log("password wrong");
+        console.log("password wrong");
         return false;
     }
     console.log("Auth... OK");

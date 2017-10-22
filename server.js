@@ -25,31 +25,38 @@ var portHttp = 8080;
 
 var router = express.Router();
 
-router.get('/helloworld', function(req, res) {
+router.get('/alive', function(req, res) {
     console.log("Alive...");
-    res.status(200).json({ message: 'Hello World!' });
+    res.status(200).json({ message: 'Im Alive!' });
 });
 
 router.get('/lights', function(req, res) {
-    console.log("/lights request received");
+    console.log("\nGET /api/lights request received...");
 
     if (auth.verifyAuth(req.headers)) {
         var what = req.param("what");
         var state = req.param("state");
-        console.log("Params: " + "what="+what + " & " + "state="+state);
 
-        var hardware_path = "./hardware_ctrl/switch";
-        console.log("Try execution hardware interface: " + hardware_path + " " + what + " " + state);
-        execFile(hardware_path, [what, state], (error, stdout, stderr) => {
-            if (error) {
-                console.log("Error executing hardware interface:" + error);
-                res.status(500).json({ message: 'hardware control failed' });
-            } else {
-                log("Executed hardware interface" + hardware_path);
-            }
-        })
-        console.log("Responding 200");
-        res.status(200).json({ message: 'Lights' });
+        if (what === undefined || state == undefined) {
+            console.log("Params: " + "what="+what + " & " + "state="+state);
+
+            var hardware_path = "./hardware_ctrl/switch";
+            console.log("Try execution hardware interface: " + hardware_path + " " + what + " " + state);
+            execFile(hardware_path, [what, state], (error, stdout, stderr) => {
+                if (error) {
+                    console.log("Error executing hardware interface:" + error);
+                    res.status(500).json({ message: 'hardware control failed' });
+                } else {
+                    log("Executed hardware interface" + hardware_path);
+                }
+            })
+            console.log("Responding 200");
+            res.status(200).json({ message: 'Lights' });
+        } else {
+            console.log("Params missing...");
+            res.status(400).json({ message: 'Parameter missing' });
+        }
+
     } else {
         console.log("Responding 401");
         res.status(401).json({ message: 'NO!' });
