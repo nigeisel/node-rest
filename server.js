@@ -36,15 +36,16 @@ router.get('/lights', function(req, res) {
     if (auth.verifyAuth(req.headers)) {
         what = req.param("what");
         state = req.param("state");
-        console.log("Params: " + "what="+what + "state="+state);
+        console.log("Params: " + "what="+what + " & " + "state="+state);
 
-        var hardware_path = "./hardware_ctrl/switch"
+        var hardware_path = "./hardware_ctrl/switch";
+        console.log("Try execution hardware interface: " + hardware_path + " what" + " state");
         execFile(hardware_path, [what, state], (error, stdout, stderr) => {
             if (error) {
                 console.log("Error executing hardware interface:" + error);
                 res.status(500).json({ message: 'hardware control failed' });
             } else {
-                log("Executed hardware interface" + hardware_path)
+                log("Executed hardware interface" + hardware_path);
             }
         })
         console.log("Responding 200");
