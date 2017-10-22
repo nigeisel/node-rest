@@ -26,8 +26,8 @@ var portHttp = 8080;
 var router = express.Router();
 
 router.get('/helloworld', function(req, res) {
-    console.log("Request received:" + req);
-    res.status(200).res.json({ message: 'Hello World!' });
+    console.log("Alive...");
+    res.status(200).json({ message: 'Hello World!' });
 });
 
 router.get('/lights', function(req, res) {
