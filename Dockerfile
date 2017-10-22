@@ -14,4 +14,4 @@ COPY . /node-server
 EXPOSE 8443
 EXPOSE 8080
 
-CMD ./entrypoint.sh
+CMD ./entrypoint_bash.sh
