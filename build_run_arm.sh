@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 echo "BUILDING for ARM architecture"
 
 echo "--- building docker image... ---"

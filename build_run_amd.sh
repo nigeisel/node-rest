@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 echo "BUILDING for AMD64 architecture"
 
 echo "--- building docker image... ---"
