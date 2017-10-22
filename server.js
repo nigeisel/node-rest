@@ -42,7 +42,7 @@ router.get('/lights', function(req, res) {
             var validWhat = ["a", "b", "c", "d", "light", "music"];
             var validState = ["on", "off"];
 
-            if (validWhat,includes(what) && validState.includes(state)) {
+            if (validWhat.indexOf(what) > -1 && validState.indexOf(state) > -1) {
                 console.log("Params: " + "what="+what + " & " + "state="+state);
 
                 var hardware_path = "./hardware_ctrl/switch";
