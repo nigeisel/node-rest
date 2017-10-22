@@ -11,8 +11,7 @@ WORKDIR node-server
 RUN npm install
 COPY . /node-server
 RUN git clone git://git.drogon.net/wiringPi
-RUN cd wiringPi
-RUN ./build
+RUN cd wiringPi && ./build
 
 EXPOSE 8443
 EXPOSE 8080

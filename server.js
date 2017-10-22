@@ -45,7 +45,7 @@ router.get('/lights', function(req, res) {
                 console.log("Error executing hardware interface:" + error);
                 res.status(500).json({ message: 'hardware control failed' });
             } else {
-                log("Executed hardware interface" + hardware_path);
+                console.log("Executed hardware interface" + hardware_path);
             }
         })
         console.log("Responding 200");
