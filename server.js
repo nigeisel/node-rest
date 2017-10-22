@@ -35,7 +35,6 @@ router.get('/lights', function(req, res) {
         what = req.param("what");
         state = req.param("state");
         execFile('./hardware_ctrl/switch', [what, state], (error, stdout, stderr) => {
-            console.log(stdout);
             if (error) {
                 console.log(error);
                 res.status(500).json({ message: 'hardware control failed' });

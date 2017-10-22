@@ -6,7 +6,7 @@ FROM $BASE_IMG
 #FROM node:alpine
 
 RUN mkdir -p node-server
-COPY package.json /noder-server
+COPY package.json /node-server
 WORKDIR node-server
 RUN npm install
 COPY . /node-server
