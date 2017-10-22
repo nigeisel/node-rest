@@ -39,7 +39,7 @@ router.get('/lights', function(req, res) {
         console.log("Params: " + "what="+what + " & " + "state="+state);
 
         var hardware_path = "./hardware_ctrl/switch";
-        console.log("Try execution hardware interface: " + hardware_path + " what" + " state");
+        console.log("Try execution hardware interface: " + hardware_path + " "+what + " "+state);
         execFile(hardware_path, [what, state], (error, stdout, stderr) => {
             if (error) {
                 console.log("Error executing hardware interface:" + error);
