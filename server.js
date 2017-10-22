@@ -31,17 +31,26 @@ router.get('/helloworld', function(req, res) {
 });
 
 router.get('/lights', function(req, res) {
+    console.log("/lights request received");
+
     if (auth.verifyAuth(req.headers)) {
         what = req.param("what");
         state = req.param("state");
-        execFile('./hardware_ctrl/switch', [what, state], (error, stdout, stderr) => {
+        console.log("Params: " + "what="+what + "state="+state);
+
+        var hardware_path = "./hardware_ctrl/switch"
+        execFile(hardware_path, [what, state], (error, stdout, stderr) => {
             if (error) {
-                console.log(error);
+                console.log("Error executing hardware interface:" + error);
                 res.status(500).json({ message: 'hardware control failed' });
+            } else {
+                log("Executed hardware interface" + hardware_path)
             }
-        });
+        })
+        console.log("Responding 200");
         res.status(200).json({ message: 'Lights' });
     } else {
+        console.log("Responding 401");
         res.status(401).json({ message: 'NO!' });
     }
 });

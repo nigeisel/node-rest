@@ -8,10 +8,13 @@ exports.verifyAuth = function(headers) {
     var pw = headers["password"];
 
     if (!(uid in users)) {
+        console.log("User not existing");
         return false;
     }
     if (users[uid] != pw) {
+        log("password wrong")
         return false;
     }
+    console.log("Auth... OK");
     return true;
 }
